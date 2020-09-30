@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useSelector } from 'react-redux';
 import './App.css';
+import { GlobalStyles } from './components/Global.styles';
+import Search from './components/Search/Search';
+import { Spinner } from './components/Spinner/Spinner';
+import PersonList from './components/PersonList/PersonList';
+import { getIsLoading } from './store/selectors';
 
-function App() {
+const App = () => {
+  const loading = useSelector(getIsLoading)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <GlobalStyles />
+      {loading && <Spinner />}
+      <Search />
+      <PersonList />
     </div>
   );
 }
-
 export default App;
